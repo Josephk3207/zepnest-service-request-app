@@ -4,7 +4,7 @@ const createServiceRequest = async (req, res) => {
   try {
     const { title, description, category, address, preferred_time } = req.body;
 
-    const userId = 1;
+    const userId = req.user.id;
 
     const [result] = await db.query(
       `INSERT INTO service_requests
@@ -28,8 +28,11 @@ const createServiceRequest = async (req, res) => {
 
 const getAllServiceRequests = async (req, res) => {
   try {
+    const userId = req.user.id;
+
     const [rows] = await db.query(
-      "SELECT * FROM service_requests"
+      "SELECT * FROM service_requests WHERE user_id = ?",
+      [userId]
     );
 
     res.status(200).json({

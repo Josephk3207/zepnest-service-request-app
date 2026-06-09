@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
+const authMiddleware = require("../middlewares/authMiddleware");
+
 const {
   createServiceRequest,
   getAllServiceRequests,
@@ -9,14 +11,14 @@ const {
   deleteServiceRequest,
 } = require("../controllers/serviceRequestController");
 
-router.post("/", createServiceRequest);
+router.post("/", authMiddleware, createServiceRequest);
 
-router.get("/", getAllServiceRequests);
+router.get("/", authMiddleware, getAllServiceRequests);
 
-router.get("/:id", getServiceRequestById);
+router.get("/:id", authMiddleware, getServiceRequestById);
 
-router.put("/:id/status", updateServiceRequestStatus);
+router.put("/:id/status", authMiddleware, updateServiceRequestStatus);
 
-router.delete("/:id", deleteServiceRequest);
+router.delete("/:id", authMiddleware, deleteServiceRequest);
 
 module.exports = router;
