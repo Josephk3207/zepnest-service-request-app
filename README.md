@@ -6,6 +6,7 @@ A full-stack web application for creating and managing service requests.
 
 - User Registration
 - User Login
+- JWT Authentication
 - Create Service Request
 - View Service Requests
 - Update Request Status
@@ -55,7 +56,8 @@ npm run dev
 
 - GET /api/service-requests
 - POST /api/service-requests
-- PUT /api/service-requests/:id
+- GET /api/service-requests/:id
+- PUT /api/service-requests/:id/status
 - DELETE /api/service-requests/:id
 
 ## Author
